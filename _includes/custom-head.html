@@ -1,0 +1,6 @@
+
+{% if page.math == "katex" %}
+  {% include katex.html %}
+{% elsif page.math == "mathjax" %}
+  {% include mathjax.html %}
+{% endif %}

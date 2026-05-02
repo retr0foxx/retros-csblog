@@ -1,7 +1,8 @@
 ---
 layout: post
-title: "Basics of Max Flow"
-date: 2026-05-01
+title: "Scrapped: Basics of Max Flow"
+date: 2100-05-01
+math: katex
 ---
 
 This blog post, which is basically the first blog post in this site, will teach you about *max flow!*
@@ -22,4 +23,14 @@ Those are the key parts of the definition that is holding the structure of the f
 
 The first one of those is that **the amount of flow leaving the source equals the amount of flow entering the sink.** Before reading the rest, try proving it yourself first. 
 
-The idea is simple, 
+The idea is simple, we imagine that we initially have the set $S = \{s\}$, and we slowly add into the set, vertices currently directly adjacent to the set (i.e. vertices $v$ where there exists an element of the set $u$ where $(u, v) \in E$), and see that whenever any directly reachable vertex is added, the following property of the set is always mantained: the total amount of flow leaving the set, substracted by the total amount entering the set, equals the flow given out by $s$. If there is a way to do this such that eventually $S$ satisfy that every edge $(u, t)$ with non-zero flow has $u \in S$, then we would have finished the proof, since it means the total flow going into $t$ equals the total flow properly leaving $S$ without re-entering. So, let's get to proving.
+
+- Let $C$ denote the total amount fo flow leaving $s$. More formally, $C = \sum_{(s, u) \in E} f((s, u))$.
+- For a set $S$, let $F(S)$ denote the flow leaving $S$ and $G(S)$ denote the flow entering $S$.
+- Formally given a set $S$, $F(S) = \sum_{u \in S, v \notin S, (u, v) \in E} f((u, v))$ while $G(S) = \sum_{u \notin S, v \in S, (v, u) \in E}$.
+- Initially, define $S = \{s\}$.
+- Initially, $F(S) - G(S) = C$ is true by definition of $s$, which is that no flow enters $s$, hence $G(S) = 0$ while $F(S) = C$.
+- We shall prove that adding any vertex $v \notin S$ with $v \neq t$ such that there exists a $u \in S$ where $(u, v) \in E$ mantains the property that $F(S) - G(S) = C$.
+...
+- Thus, as long as there still exists a $v \notin S$ and $v \neq t$ such that there exists a $u \in S$ where $(u, v) \in E$, we can keep adding it into the set.
+- Now, it must be the case that $F(S) = C$. 
